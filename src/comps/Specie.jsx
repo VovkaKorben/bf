@@ -14,9 +14,14 @@ const Specie = ({ specie_id, food_id }) => {
         <div className="specie_header">{specie_data.name}: {food_data.name} </div>
         <div className="container">
             {indices.map((n) => (
-                <div key={n} className={`el_${n}`}>
-                    {/* {n}: {specie_data[food_id][n]} */}
-                    <Table npc_id={specie_data[food_id][n]} />
+                <div key={`${specie_id}-${food_id}-${n}`} className={`el_${n}`}>
+
+                    <Table
+                        specie_id={specie_id}
+                        npc_index={n}
+                        food_id={food_id}
+
+                    />
                 </div>
             ))}
 

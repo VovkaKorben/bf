@@ -1,9 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body, #root {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   padding: 0px;
   margin: 0px;
   color: #ffffff;
+
 }
 
 a {
@@ -23,13 +30,13 @@ a {
 }
 
 .header {
-  height: 30px;
+  height: 80px;
 }
 
 .specie {
-  border: 2px solid #f9bebe;
-  padding: 5px;
-  margin: 5px;
+  /* border: 2px solid #f9bebe; */
+  /* padding: 5px; */
+  /* margin: 5px; */
 }
 
 .specie_header {
@@ -37,6 +44,53 @@ a {
   font-weight: bold;
 }
 
+.monster {
+  background-color: #1e4863;
+}
+
+table.loot {
+  border-collapse: collapse;
+  width: 100%;
+  border-spacing: 0px;
+}
+
+table.loot tr {
+  /* height: 32px; */
+}
+
+table.loot td, table.loot th {
+  font-size: 10px;
+  border: 1px solid #b9c9d4;
+  height: 16px;
+}
+
+table.loot td img {
+  /* Самое популярное и надежное решение для устранения нижнего зазора */
+  vertical-align: top;
+  
+}
+
+table.loot td:nth-child(3n+1) {
+  /* background-color: red; */
+  width: 16px;
+}
+
+table.loot td:nth-child(3n+2) {
+  /* background-color: rgb(0, 255, 26); */
+  width: 150px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+table.loot td:nth-child(3n+3) {
+  /* background-color: rgb(0, 30, 255); */
+  width: 70px;
+  text-align: right;
+}
+
+.item_name {
+  color: #F3B831;
+}
 
 .stringifyWithDepthLimit {
   white-space: pre-wrap;
@@ -51,7 +105,7 @@ a {
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -59,17 +113,20 @@ a {
     "el_1 el_3 el_6 el_8"
     "el_2 el_4 el_7 el_9"
     "el_5 el_5 el_10 el_10";
-     justify-content: center; 
-  align-content: center; 
-  justify-items: center; 
-  align-items: center; 
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: start;
 }
 
 .container>div {
   text-align: center;
-width: 100px;
-border: 2px solid rgba(255, 255, 255, 0.126);
-border-radius: 10px;
+  /* width: 100px; */
+  min-width: 200px;
+  /* border: 2px solid rgba(255, 255, 255, 0.126); */
+  border-radius: 10px;
+  padding: 3px;
+  margin: 3px;
 }
 
 .el_0 {
