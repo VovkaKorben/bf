@@ -1,0 +1,125 @@
+body, #root {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 0px;
+  margin: 0px;
+  color: #ffffff;
+}
+
+a {
+  color: #F3B831;
+}
+
+.c1 {
+  background-color: #154f75;
+}
+
+.c2 {
+  background-color: #1e4863;
+}
+
+.c3 {
+  background-color: #1c425b;
+}
+
+.header {
+  height: 30px;
+}
+
+.specie {
+  border: 2px solid #f9bebe;
+  padding: 5px;
+  margin: 5px;
+}
+
+.specie_header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.stringifyWithDepthLimit {
+  white-space: pre-wrap;
+  font-size: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px dotted rgba(255, 255, 255, 0.283);
+  padding: 5px;
+  margin: 5px;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "el_0 el_0 el_0 el_0"
+    "el_1 el_3 el_6 el_8"
+    "el_2 el_4 el_7 el_9"
+    "el_5 el_5 el_10 el_10";
+     justify-content: center; 
+  align-content: center; 
+  justify-items: center; 
+  align-items: center; 
+}
+
+.container>div {
+  text-align: center;
+width: 100px;
+border: 2px solid rgba(255, 255, 255, 0.126);
+border-radius: 10px;
+}
+
+.el_0 {
+  grid-area: el_0;
+}
+
+.el_1 {
+  grid-area: el_1;
+}
+
+.el_2 {
+  grid-area: el_2;
+}
+
+.el_3 {
+  grid-area: el_3;
+}
+
+.el_4 {
+  grid-area: el_4;
+}
+
+.el_5 {
+  grid-area: el_5;
+}
+
+.el_6 {
+  grid-area: el_6;
+}
+
+.el_7 {
+  grid-area: el_7;
+}
+
+.el_8 {
+  grid-area: el_8;
+}
+
+.el_9 {
+  grid-area: el_9;
+}
+
+.el_10 {
+  grid-area: el_10;
+}
+
+
+/*  
+frame ffc46e
+border b9c9d4
+link #F3B831
+ font ffffff
+ */
