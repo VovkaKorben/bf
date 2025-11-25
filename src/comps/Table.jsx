@@ -4,37 +4,9 @@ import { ITEMS } from '../items.js';
 import { stringifyWithDepthLimit } from '../debug.js';
 
 const Table = ({ food_id, specie_id, npc_index }) => {
-    /*
-        const RenderRow = ({ cols1, cols2 }) => {
-            const cells = [];
-            if (cols1 === null) {
-                cells.push(<td></td>);
-                cells.push(<td></td>);
-                cells.push(<td></td>);
-            } else {
-                cells.push(<td>1</td>);
-                cells.push(<td><span className="item_name">{cols1.item_name}</span></td>);
-                cells.push(<td>1/{cols1.chance}</td>);
-            }
-            if (cols2 === null) {
-                cells.push(<td></td>);
-                cells.push(<td></td>);
-                cells.push(<td></td>);
-            } else {
-                cells.push(<td>1</td>);
-                cells.push(<td><span className="item_name">{cols2.item_name}</span></td>);
-                cells.push(<td>1/{cols2.chance}</td>);
-            }
-            return (<tr>{cells}</tr>);
-        }
-            */
-
+  
     const RenderRow = ({ cols1, cols2 }) => {
-
-        // Вспомогательная функция для рендеринга одной секции (DROP или SPOIL)
-        // Эта функция решает проблему повторяющегося кода.
         const renderSection = (col_data, keyBase) => {
-            // Проверка на отсутствие данных
             if (col_data === null) {
                 return (
                     <React.Fragment key={keyBase}>
@@ -44,14 +16,15 @@ const Table = ({ food_id, specie_id, npc_index }) => {
                     </React.Fragment>
                 );
             }
-
-            // Рендеринг секции с данными
             return (
                 <React.Fragment key={keyBase}>
                     <td key={`${keyBase}-1`}>
-                        <img src={`./img/${col_data.icon}.png`} alt={col_data.item_id} width={"16"} height={"16"}/>
+                        <img src={`./img/${col_data.icon}.png`} alt={col_data.item_id} width={"16"} height={"16"} />
                     </td>
-                    <td key={`${keyBase}-2`}><span className="item_name">{col_data.item_name}</span></td>
+                    <td key={`${keyBase}-2`}>
+                        <span className="item_name">{col_data.item_name}</span>
+                        {col_data.min !== 1 && col_data.max !== 1 && ` (${col_data.min}-${col_data.max})`}
+                    </td>
                     <td key={`${keyBase}-3`}>1/{col_data.chance}</td>
                 </React.Fragment>
             );
@@ -63,10 +36,7 @@ const Table = ({ food_id, specie_id, npc_index }) => {
 
         return (
             <tr>
-                {/* Вызываем функцию для первой секции (DROP) */}
                 {renderSection(cols1, dropKeyBase)}
-
-                {/* Вызываем функцию для второй секции (SPOIL) */}
                 {renderSection(cols2, spoilKeyBase)}
             </tr>
         );
@@ -103,10 +73,13 @@ const Table = ({ food_id, specie_id, npc_index }) => {
 
 
     return (
-        <div className="monster">
+        <>
+            {/* <div className="monster"> */}
             {specie_id},   {food_id}, {npc_index}
             <RenderTable />
-        </div>);
+            {/* </div> */}
+        </>
+    );
 };
 
 export default Table;

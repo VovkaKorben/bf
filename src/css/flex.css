@@ -1,9 +1,17 @@
-.flex_col_center_top
-{
+.flex_col_center_top {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
+	align-items: center;
+	align-content: stretch;
+}
+
+.flex_row_center_center {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
 	align-items: center;
 	align-content: stretch;
 }

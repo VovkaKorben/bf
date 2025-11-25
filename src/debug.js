@@ -1,3 +1,5 @@
+{/* <div className="stringifyWithDepthLimit">{stringifyWithDepthLimit(specie_data[food_id], 0)}</div> */}
+
 /**
  * Выводит объект JavaScript (JSON) в строку с ограничением глубины форматирования.
  * @param {object} obj - Объект для форматирования.

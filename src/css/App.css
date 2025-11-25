@@ -13,6 +13,10 @@ body, #root {
 
 }
 
+#root {
+  text-align: center;
+}
+
 a {
   color: #F3B831;
 }
@@ -30,7 +34,17 @@ a {
 }
 
 .header {
-  height: 80px;
+  height: 90px;
+  position: fixed;
+  background-color: #1c425b;
+  left: 0px;
+  right: 0px;
+  -webkit-box-shadow: 0px 9px 12px 5px rgba(0, 0, 0, 0.79);
+  box-shadow: 0px 9px 12px 5px rgba(0, 0, 0, 0.49);
+}
+
+.species_list {
+  padding-top: 90px;
 }
 
 .specie {
@@ -39,24 +53,59 @@ a {
   /* margin: 5px; */
 }
 
+
 .specie_header {
-  font-size: 18px;
+  font-size: 28px;
   font-weight: bold;
-}
-
-.monster {
+  width: 90%;
+  padding: 15px;
+  margin: 30px 0px 10px 0px;
   background-color: #1e4863;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  height: 70px;
+  cursor: pointer;
 }
 
+/* .specie.disabled .specie_header */
+.specie.disabled .specie_header {
+  text-decoration: line-through;
+  color: #154f75;
+}
+
+.specie_container>div {
+  text-align: center;
+  /* width: 100px; */
+  min-width: 200px;
+  /* border: 2px solid rgba(255, 255, 255, 0.126); */
+  border-radius: 10px;
+  padding: 5px;
+  margin: 3px;
+  background-color: #1e4863;
+  cursor: pointer;
+  transition: all 200ms ease;
+  border: 1px solid #1e4863;
+}
+
+.specie_container>div:hover {
+  /* background-color: #1c425b; */
+border: 1px solid red;
+}
+.specie_container>div.sel
+{
+  background-color: red;
+border: 1px solid red;
+}
 table.loot {
+  border: 2px solid #b9c9d4;
   border-collapse: collapse;
+  border-radius: 15px;
   width: 100%;
-  border-spacing: 0px;
+  /* border-spacing: 0px; */
 }
 
-table.loot tr {
-  /* height: 32px; */
-}
+
 
 table.loot td, table.loot th {
   font-size: 10px;
@@ -67,7 +116,7 @@ table.loot td, table.loot th {
 table.loot td img {
   /* Самое популярное и надежное решение для устранения нижнего зазора */
   vertical-align: top;
-  
+
 }
 
 table.loot td:nth-child(3n+1) {
@@ -84,7 +133,7 @@ table.loot td:nth-child(3n+2) {
 
 table.loot td:nth-child(3n+3) {
   /* background-color: rgb(0, 30, 255); */
-  width: 70px;
+  width: 45px;
   text-align: right;
 }
 
@@ -102,32 +151,27 @@ table.loot td:nth-child(3n+3) {
 }
 
 
-.container {
+.specie_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  gap: 0px 0px;
+  gap: 10px 10px;
   grid-auto-flow: row;
   grid-template-areas:
     "el_0 el_0 el_0 el_0"
-    "el_1 el_3 el_6 el_8"
-    "el_2 el_4 el_7 el_9"
-    "el_5 el_5 el_10 el_10";
+    "el_1 el_4 el_7 el_10"
+    "el_2 el_5 el_8 el_11"
+    "el_3 el_6 el_9 el_12";
   justify-content: center;
   align-content: center;
   justify-items: center;
   align-items: start;
 }
 
-.container>div {
-  text-align: center;
-  /* width: 100px; */
-  min-width: 200px;
-  /* border: 2px solid rgba(255, 255, 255, 0.126); */
-  border-radius: 10px;
-  padding: 3px;
-  margin: 3px;
+.monster {
+  background-color: #1e4863;
 }
+
 
 .el_0 {
   grid-area: el_0;
@@ -173,6 +217,13 @@ table.loot td:nth-child(3n+3) {
   grid-area: el_10;
 }
 
+.el_11 {
+  grid-area: el_11;
+}
+
+.el_12 {
+  grid-area: el_12;
+}
 
 /*  
 frame ffc46e
