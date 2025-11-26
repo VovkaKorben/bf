@@ -4,38 +4,8 @@ import Table from './Table.jsx';
 import { stringifyWithDepthLimit } from '../debug.js';
 
 
-const Specie = ({ specie_id, food_id, state, click_handler }) => {
+const Specie = ({ specie_id, food_id, state, sel, click_handler, header_click_handler }) => {
 
-    /*
-        const [state, setState] = useState(() => {
-           
-            const storedValue = localStorage.getItem(localstorage_key);
-            let value = default_state;
-            if (storedValue) {
-                try {
-                    let parsed = JSON.parse(storedValue);
-                    if (Array.isArray(parsed) && parsed.length === 13 && parsed.every(Number.isInteger)) {
-                        value = parsed;
-                    }
-                } catch (e) {
-                }
-            }
-            // if (load_handler)            load_handler(specie_id, food_id, value);
-            return value;
-        }
-        );
-    
-        useEffect(() => {
-            if (load_handler) {
-                // ✅ Безопасный вызов после завершения фазы рендеринга
-                load_handler(specie_id, food_id, state);
-            }
-        }, [load_handler, specie_id, food_id]);
-    
-        useEffect(() => {
-            localStorage.setItem(localstorage_key, JSON.stringify(state));
-        }, [state, localstorage_key]);
-    */
 
     const handleClick = (id) => {
         // mutate state
@@ -57,9 +27,9 @@ const Specie = ({ specie_id, food_id, state, click_handler }) => {
         }
     };
 
-    const header_click_handler = () => {
-        if (click_handler) {
-            click_handler(specie_id, food_id, state);
+    const onHeaderClick = () => {
+        if (header_click_handler) {
+            header_click_handler(specie_id, food_id);
         }
     };
 
@@ -68,11 +38,12 @@ const Specie = ({ specie_id, food_id, state, click_handler }) => {
     const specie_data = SPECIES.filter(item => item.id === specie_id)[0];
     const food_data = FOOD.filter(item => item.id === food_id)[0];
     const indices = Array.from({ length: 13 }, (_, i) => i);
-    return (<div className="specie flex_col_center_top">
+    return (<div className={`specie flex_col_center_top sel-${sel ? '1' : '0'}`}>
         <div
             className="specie_header flex_row_center_center"
-            onClick={header_click_handler}
+            onClick={onHeaderClick}
         >
+            {/* {sel ? '1' : '0'} */}
             <img src={`./spec/specie${specie_id}.png`} alt="" height={"100%"} />
             {specie_data.name}: {food_data.name}
             <img src={`./spec/food${food_id}.png`} alt="" />
@@ -82,10 +53,13 @@ const Specie = ({ specie_id, food_id, state, click_handler }) => {
                 <div
                     onClick={() => handleClick(n)}
                     key={`${specie_id}-${food_id}-${n}`}
-                    className={`el_${n} ${state[n] ? 'sel' : ''} `}
+                    className={`el_${n} sel-${state[n] ? '1' : '0'} `}
                 >
-                    idx:{n} spec: {specie_id} food: {food_id}<br />
-                    ID: {SPECIES[specie_id][food_id][n]}
+                    
+                    {/* idx:{n} spec: {specie_id} food: {food_id}<br /> */}
+                    
+                        <span className='grayed'>
+                        ID: {SPECIES[specie_id][food_id][n]}</span>
                     {/* <Table
                         specie_id={specie_id}
                         npc_index={n}

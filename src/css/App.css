@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
-body, #root {
+body, #root, input {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+}
+
+body, #root {
+
   padding: 0px;
   margin: 0px;
   color: #ffffff;
@@ -33,6 +37,11 @@ a {
   background-color: #1c425b;
 }
 
+.grayed {
+  color: gray;
+  font-size: 10px;
+}
+
 .header {
   height: 90px;
   position: fixed;
@@ -45,12 +54,6 @@ a {
 
 .species_list {
   padding-top: 90px;
-}
-
-.specie {
-  /* border: 2px solid #f9bebe; */
-  /* padding: 5px; */
-  /* margin: 5px; */
 }
 
 
@@ -68,12 +71,6 @@ a {
   cursor: pointer;
 }
 
-/* .specie.disabled .specie_header */
-.specie.disabled .specie_header {
-  text-decoration: line-through;
-  color: #154f75;
-}
-
 .specie_container>div {
   text-align: center;
   /* width: 100px; */
@@ -85,18 +82,51 @@ a {
   background-color: #1e4863;
   cursor: pointer;
   transition: all 200ms ease;
-  border: 1px solid #1e4863;
+  border: 2px solid #154f75;
 }
 
 .specie_container>div:hover {
   /* background-color: #1c425b; */
-border: 1px solid red;
+  border: 2px solid rgb(244, 155, 1);
 }
-.specie_container>div.sel
-{
+
+
+
+.specie.sel-0 .specie_header {
+  text-decoration: line-through;
+  color: #154f75;
+}
+
+.specie.sel-1 .specie_header {
+
+  color: hsl(0, 0%, 100%);
+}
+
+.specie.sel-0 .specie_container>div.sel-0 {
+  background-color: hsl(204, 40%, 24%);
+}
+
+.specie.sel-0 .specie_container>div.sel-1 {
+  background-color: hsl(204, 60%, 24%);
+}
+
+.specie.sel-1 .specie_container>div.sel-0 {
+  background-color: hsl(204, 61%, 27%);
+}
+
+.specie.sel-1 .specie_container>div.sel-1 {
+  background-color: hsl(204, 100%, 23%);
+}
+
+
+
+
+
+.specie_container>div.sel {
   background-color: red;
-border: 1px solid red;
+  border: 1px solid red;
 }
+
 table.loot {
   border: 2px solid #b9c9d4;
   border-collapse: collapse;
@@ -169,7 +199,7 @@ table.loot td:nth-child(3n+3) {
 }
 
 .monster {
-  background-color: #1e4863;
+  /* background-color: #1e4863; */
 }
 
 
@@ -231,3 +261,26 @@ border b9c9d4
 link #F3B831
  font ffffff
  */
+
+
+
+input[type="text"] {
+  /* color: red; */
+  padding: 3px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid black;
+}
+
+
+button {
+  background-color: #004675;
+    /* background-color: hsl(204, 60%, 24%); */
+   border: 2px solid #004675;
+   border-radius: 4px;
+}
+button:hover {
+  background-color: #004675;
+  
+   border: 2px solid #ffffff;
+}
