@@ -270,6 +270,8 @@ input[type="text"] {
   border-radius: 5px;
   outline: none;
   border: 1px solid black;
+  width: 70%;
+  font-size: smaller;
 }
 
 

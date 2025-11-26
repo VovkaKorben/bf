@@ -46,7 +46,7 @@ function App() {
       for (let f = 0; f < 2; f++) {
         if (!(hasKey(tmp[s], f) && Array.isArray(tmp[s][f]) && tmp[s][f].length === 13 && tmp[s][f].every(Number.isInteger))) {
           tmp[s][f] = new Array(13).fill(0);
-          tmp[s][f][0] = 1;
+          // tmp[s][f][0] = 1;
         }
       }
     }
