@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReadOnlyClipboardInput from './Edit.jsx';
+import Info from './Info.jsx';
 import { SPECIES, FOOD, BEHAVOIR } from '../consts.js';
 
 const Header = ({ state }) => {
@@ -52,11 +53,14 @@ const Header = ({ state }) => {
 
 
     return (<div className="header">
-        {/* {JSON.stringify(state)} */}
+        <div className='hc0'>Golden spice</div><div className='he0'> <ReadOnlyClipboardInput value={gold} /></div>
+        <div className='hc1'>Crystal spice</div><div className='he1'> <ReadOnlyClipboardInput value={crystal} /></div>
+        <div className='hc2'>Assist</div><div className='he2'> <ReadOnlyClipboardInput value={assister} /></div>
 
-        <ReadOnlyClipboardInput caption="Gold spice" value={gold} />
-        <ReadOnlyClipboardInput caption="Crystal spice" value={crystal} />
-        <ReadOnlyClipboardInput caption="Assister" value={assister} />
+        <div className='info1'><Info state={state} mode={0} /></div>
+        {/* <div className='info2'><Info state={state} mode={1} /></div>
+        <div className='info3'><Info state={state} mode={2} /></div> */}
+
     </div>);
 };
 

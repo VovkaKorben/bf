@@ -75,7 +75,7 @@ const Table = ({ food_id, specie_id, npc_index }) => {
     return (
         <>
             {/* <div className="monster"> */}
-            {specie_id},   {food_id}, {npc_index}
+            {/* {specie_id},   {food_id}, {npc_index} */}
             <RenderTable />
             {/* </div> */}
         </>

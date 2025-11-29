@@ -56,10 +56,9 @@ const Specie = ({ specie_id, food_id, state, sel, click_handler, header_click_ha
                     className={`el_${n} sel-${state[n] ? '1' : '0'} `}
                 >
 
-                    idx:{n} spec: {specie_id} food: {food_id}<br />
+                    {/* idx:{n} spec: {specie_id} food: {food_id}<br /> */}
 
-                    <span className='grayed'>
-                        ID: {SPECIES[specie_id][food_id][n]}</span>
+                    <span className='grayed'>ID: {SPECIES[specie_id][food_id][n]}</span>
                     <Table specie_id={specie_id} npc_index={n} food_id={food_id} />
                 </div>
             ))}

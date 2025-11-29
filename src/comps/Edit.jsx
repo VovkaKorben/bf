@@ -28,23 +28,12 @@ const ReadOnlyClipboardInput = ({ caption, value }) => {
 
     return (
         <div className='flex_row_left_center'>
-            {caption}: 
-            <input
-                type="text"
-                value={value}
-
-                readOnly
-                style={{
-
-                    cursor: 'default' // Указываем, что поле неактивно для ввода
-                }}
-            />
+            {caption}
+            <input type="text" value={value} readOnly />
 
             <button onClick={handleCopy}  >
-                <img src={`./btn/${copyStatus}.svg`} width={20} height={20} alt="" />
-
+                <img src={`./btn/${copyStatus}.svg`} width={16} height={16} alt="" />
             </button>
-
 
         </div>
     );

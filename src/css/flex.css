@@ -15,11 +15,30 @@
 	align-items: center;
 	align-content: stretch;
 }
-.flex_row_left_center{
+
+.flex_row_left_center {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: center;
+	align-content: stretch;
+}
+
+.flex_col_right_top {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-end;
+	align-content: stretch;
+}
+.flex_col_stretch_top
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
 	align-content: stretch;
 }
