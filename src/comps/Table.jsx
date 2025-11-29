@@ -1,11 +1,12 @@
 import React from "react";
 import { SPECIES, FOOD } from '../consts.js';
 import { ITEMS } from '../items.js';
+import { TableItem } from './Info.jsx';
 import { stringifyWithDepthLimit } from '../debug.js';
 
 const Table = ({ food_id, specie_id, npc_index }) => {
-  
-    const RenderRow = ({ cols1, cols2 }) => {
+
+    /*const RenderRow = ({ cols1, cols2 }) => {
         const renderSection = (col_data, keyBase) => {
             if (col_data === null) {
                 return (
@@ -40,9 +41,9 @@ const Table = ({ food_id, specie_id, npc_index }) => {
                 {renderSection(cols2, spoilKeyBase)}
             </tr>
         );
-    };
+    };*/
     const RenderTable = () => {
-        const rowsArray = [];
+        const rows = [];
         const specie = SPECIES.filter(item => (item.id === specie_id))[0];
         const monsters = specie[food_id];
         const monster_id = monsters[npc_index];
@@ -52,22 +53,31 @@ const Table = ({ food_id, specie_id, npc_index }) => {
         const spoil = ITEMS.filter(item => (item.npc_id === monster_id && item.type === 1));
         const maxLength = Math.max(drop.length, spoil.length);
 
-        rowsArray.push(<tr key="header_row"><th colSpan={3}>Drop</th><th colSpan={3}>Spoil</th></tr>);
+        rows.push(<tr key="header_row"><th colSpan={3}>Drop</th><th colSpan={3}>Spoil</th></tr>);
+
         for (let i = 0; i < maxLength; i++) {
-            rowsArray.push(
+            const item_drop = <TableItem
+                key={`0-${i}`}
+                item={i < drop.length ? drop[i] : null}
+                chance={true}
+            />;
+            const item_spoil = <TableItem
+                key={`1-${i}`}
+                item={i < spoil.length ? spoil[i] : null}
+                chance={true}
+            />;
+            rows.push(<tr key={`row-${i}`}>{item_drop}{item_spoil}</tr>);
 
-                <RenderRow
-                    key={i}
-                    cols1={i < drop.length ? drop[i] : null}
-                    cols2={i < spoil.length ? spoil[i] : null}
-                />
 
-
-
-            );
+            /*             <RenderRow
+                                key={i}
+                                cols1={i < drop.length ? drop[i] : null}
+                                cols2={i < spoil.length ? spoil[i] : null}
+                            />
+            */
         }
 
-        return (<table className="loot"><tbody>{rowsArray}</tbody></table>);
+        return (<table className="loot"><tbody>{rows}</tbody></table>);
     }
 
 

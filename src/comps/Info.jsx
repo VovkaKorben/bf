@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SPECIES } from '../consts.js';
 import { ITEMS } from '../items.js';
 /**
@@ -9,50 +9,38 @@ import { ITEMS } from '../items.js';
  * @param {React.ReactNode} contentElement - Контент, который нужно показать/рендерить.
  */
 const COLUMN_COUNT = 3;
-const TableItem = ({ item }) => {
+const TableItem = ({ item, chance }) => {
     if (item === null)
-        return (<td colSpan={2}></td>);
+    {
+        return (<td colSpan={chance ? 3 : 2}></td>);
+    }
     // existing item
-    return (<>
-        <td className='ico'>
-            <img src={`./img/${item.icon}.png`} alt={""} width={"16"} height={"16"} />
-        </td>
-        <td className='item_name'>
+    const result = [];
+    result.push(
+        <td
+            key="ico-cell"
+            className='ico'
+        >
+            <img src={`./icons/${item.icon}.png`} alt={""} width={"16"} height={"16"} />
+        </td>);
+    result.push(
+        <td
+            key="name-cell"
+            className='item_name'>
             {item.item_name}
         </td>
-    </>);
+    );
+    if (chance)
+        result.push(<td
+            key="chance-cell"
+            className='chance'>
+            1/{item.chance}
+        </td>);
+    return (<>{result}</>);
 
 }
 
 const Info = ({ state, mode }) => {
-
-
-    const getListItems = (list) => {
-        const result = [];
-
-
-        const added_id = [];
-        const added_items = [];
-        // collect items
-        list.forEach(e => {
-            if (!added_id.includes(e)) {
-                added_id.push(e);
-                const item = ITEMS.filter(item => item.item_id === e)[0];
-                added_items.push(item);
-            }
-        });
-
-        // sort by name
-        added_items.sort((a, b) => {
-            return a.item_name.localeCompare(b.item_name);
-        });
-
-
-        added_items.forEach(e => {
-            result.push(`${e.item_id}: ${e.item_name}`);
-        });
-        return result;
-    };
 
 
 
@@ -148,9 +136,11 @@ const Info = ({ state, mode }) => {
                 let row = [];
                 for (let s = 0; s < 3; s++)
                     row.push(
-                        <th className='' key={`header-${s}`} colSpan={2}>
-                            <img src={`./spec/specie${s}.png`} alt="" height={"100%"} />
-                            {SPECIES[s].name}
+                        <th key={`cell-header-${s}`} colSpan={2}>
+                            <div className='flex_row_center_center'>
+                                <img src={`./spec/specie${s}.png`} alt="" height={"40"} />
+                                {SPECIES[s].name}
+                            </div>
                         </th>
                     );
                 rows.push(<tr key={`row-header`}>{row}</tr>);
@@ -161,23 +151,28 @@ const Info = ({ state, mode }) => {
                     for (let s = 0; s < 3; s++) {
 
                         row.push(<TableItem
-                            key={`${s}-${r}`}
+                            key={`td-${s}-${r}`}
                             item={r < collect[s].length ? collect[s][r] : null}
                         />);
 
 
                     }
-                    rows.push(<tr key={`row${r}`}>{row}</tr>)
+                    rows.push(<tr key={`row-${r}`}>{row}</tr>)
                 }
-                return (<table className='info'><tbody>{rows}</tbody></table>)
-            }
 
+            }
+            return (<table className='info'><tbody>{rows}</tbody></table>)
         }
     }
     const [isHovering, setIsHovering] = useState(false);
-    const [data, setData] = useState(getText(state, 1));
+    const [data, setData] = useState(getText(state, mode));
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
+
+
+    useEffect(() => {
+        setData(getText(state, mode));
+    }, [state]);
 
     return (
         <div
@@ -185,27 +180,13 @@ const Info = ({ state, mode }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <img src={`./btn/info.svg`} width={64} height={64} alt="" />
+            <img src={`./btn/info${mode}.svg`} width={64} height={64} alt="" />
 
-            {/* {isHovering && (<div className='item_list' >{data}</div>)} */}
-            <div className='item_list' >{data}</div>
+            {isHovering && (<div className='item_list' >{data}</div>)}
+            {/* <div className='item_list' >{data}</div> */}
         </div>
     );
 };
 
+export { TableItem };
 export default Info;
-
-
-/*                        if (item_index < collect[0].length) {
-                                          // existing item
-                                          row.push(<td className='ico' key={`ico${item_index}`}>
-                                              <img src={`./img/${collect[0][item_index].icon}.png`} alt={""} width={"16"} height={"16"} />
-                                          </td>);
-                                          row.push(<td className='item_name' key={`txt${item_index}`}>
-                                              {collect[0][item_index].item_name}
-                                          </td>);
-                                      } else {
-                                          // filler
-                                          row.push(<td key={`${item_index}`} colSpan={2}>-</td>);
-              
-                                      }*/

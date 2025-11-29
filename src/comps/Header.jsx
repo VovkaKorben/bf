@@ -58,8 +58,8 @@ const Header = ({ state }) => {
         <div className='hc2'>Assist</div><div className='he2'> <ReadOnlyClipboardInput value={assister} /></div>
 
         <div className='info1'><Info state={state} mode={0} /></div>
-        {/* <div className='info2'><Info state={state} mode={1} /></div>
-        <div className='info3'><Info state={state} mode={2} /></div> */}
+        <div className='info2'><Info state={state} mode={1} /></div>
+        <div className='info3'><Info state={state} mode={2} /></div>
 
     </div>);
 };
